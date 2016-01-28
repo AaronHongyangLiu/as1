@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">hliu11-FuelTrack</string>
+    <string name="action_settings">Settings</string>
+    <string name="editButton">EDIT</string>
+    <string name="mainAddButton">ADD</string>
+    <string name="mainTitle">Welcome to FuelTrack</string>
+    <string name="year">Year</string>
+    <string name="month">Month</string>
+    <string name="day">Day</string>
+</resources>

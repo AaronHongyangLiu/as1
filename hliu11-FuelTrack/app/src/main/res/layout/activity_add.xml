@@ -1,0 +1,224 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context="com.example.aaron.hliu11_fueltrack.AddActivity"
+    android:background="#006699">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="@string/year"
+        android:id="@+id/textView2"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginLeft="18dp"
+        android:layout_marginStart="18dp"
+        android:layout_marginTop="30dp" />
+
+    <EditText
+        android:layout_width="70dp"
+        android:layout_height="40dp"
+        android:inputType="date"
+        android:ems="10"
+        android:id="@+id/year"
+        android:layout_alignTop="@+id/textView2"
+        android:layout_toRightOf="@+id/textView2"
+        android:layout_toEndOf="@+id/textView2" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="@string/month"
+        android:id="@+id/textView3"
+        android:layout_alignTop="@+id/year"
+        android:layout_toRightOf="@+id/year"
+        android:layout_toEndOf="@+id/year" />
+
+    <EditText
+        android:layout_width="60dp"
+        android:layout_height="40dp"
+        android:inputType="date"
+        android:ems="10"
+        android:id="@+id/month"
+        android:layout_alignBottom="@+id/year"
+        android:layout_toRightOf="@+id/textView3"
+        android:layout_toEndOf="@+id/textView3"
+        android:layout_alignParentStart="false" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="@string/day"
+        android:id="@+id/textView4"
+        android:layout_alignBottom="@+id/textView3"
+        android:layout_toRightOf="@+id/month"
+        android:layout_toEndOf="@+id/month" />
+
+    <EditText
+        android:layout_width="60dp"
+        android:layout_height="40dp"
+        android:inputType="date"
+        android:ems="10"
+        android:id="@+id/day"
+        android:layout_alignTop="@+id/textView4"
+        android:layout_toRightOf="@+id/textView4"
+        android:layout_toEndOf="@+id/textView4" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="Station"
+        android:id="@+id/textView5"
+        android:layout_marginTop="23dp"
+        android:layout_below="@+id/year"
+        android:layout_alignLeft="@+id/textView2"
+        android:layout_alignStart="@+id/textView2" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="Odometer"
+        android:id="@+id/textView6"
+        android:layout_marginTop="34dp"
+        android:layout_below="@+id/station"
+        android:layout_alignLeft="@+id/textView5"
+        android:layout_alignStart="@+id/textView5" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="Fuel Grade"
+        android:id="@+id/textView7"
+        android:layout_centerVertical="true"
+        android:layout_alignLeft="@+id/textView6"
+        android:layout_alignStart="@+id/textView6" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="Fuel Amount"
+        android:id="@+id/textView8"
+        android:layout_marginTop="23dp"
+        android:layout_below="@+id/fuelGrade"
+        android:layout_alignLeft="@+id/textView7"
+        android:layout_alignStart="@+id/textView7" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="Fuel Unit Cost"
+        android:id="@+id/textView9"
+        android:layout_marginTop="22dp"
+        android:layout_below="@+id/fuelAmount"
+        android:layout_alignLeft="@+id/textView8"
+        android:layout_alignStart="@+id/textView8" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Save"
+        android:id="@+id/save"
+        android:layout_alignParentBottom="true"
+        android:layout_alignLeft="@+id/year"
+        android:layout_alignStart="@+id/year"
+        android:layout_marginBottom="25dp" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="cancel"
+        android:id="@+id/cancel"
+        android:layout_alignBottom="@+id/save"
+        android:layout_alignRight="@+id/day"
+        android:layout_alignEnd="@+id/day" />
+
+    <EditText
+        android:layout_width="180dp"
+        android:layout_height="40dp"
+        android:id="@+id/station"
+        android:layout_alignTop="@+id/textView5"
+        android:layout_toLeftOf="@+id/day"
+        android:layout_toStartOf="@+id/day" />
+
+    <EditText
+        android:layout_width="180dp"
+        android:layout_height="40dp"
+        android:id="@+id/fuelAmount"
+        android:layout_alignTop="@+id/textView8"
+        android:layout_toRightOf="@+id/textView8"
+        android:layout_alignRight="@+id/odometer"
+        android:layout_alignEnd="@+id/odometer" />
+
+    <EditText
+        android:layout_width="180dp"
+        android:layout_height="40dp"
+        android:id="@+id/odometer"
+        android:layout_alignTop="@+id/textView6"
+        android:layout_toRightOf="@+id/textView6"
+        android:layout_alignRight="@+id/station"
+        android:layout_alignEnd="@+id/station" />
+
+    <EditText
+        android:layout_width="180dp"
+        android:layout_height="40dp"
+        android:id="@+id/fuelGrade"
+        android:layout_alignTop="@+id/textView7"
+        android:layout_toRightOf="@+id/textView7"
+        android:layout_alignRight="@+id/odometer"
+        android:layout_alignEnd="@+id/odometer" />
+
+    <EditText
+        android:layout_width="180dp"
+        android:layout_height="40dp"
+        android:id="@+id/fuelUCost"
+        android:layout_alignTop="@+id/textView9"
+        android:layout_toRightOf="@+id/textView9"
+        android:layout_alignRight="@+id/odometer"
+        android:layout_alignEnd="@+id/odometer" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="km"
+        android:id="@+id/textView11"
+        android:layout_alignTop="@+id/odometer"
+        android:layout_alignRight="@+id/station"
+        android:layout_alignEnd="@+id/station" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="L"
+        android:id="@+id/textView12"
+        android:layout_alignBottom="@+id/textView8"
+        android:layout_alignRight="@+id/fuelUCost"
+        android:layout_alignEnd="@+id/fuelUCost" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="cents/L"
+        android:id="@+id/textView13"
+        android:layout_alignBottom="@+id/textView9"
+        android:layout_alignRight="@+id/fuelUCost"
+        android:layout_alignEnd="@+id/fuelUCost" />
+
+</RelativeLayout>
