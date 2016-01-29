@@ -18,6 +18,7 @@ import java.io.IOException;
 import java.io.OutputStreamWriter;
 import java.util.ArrayList;
 
+// this class is the activity after the user click on Edit button
 public class EditActivity extends Activity {
 
     @Override
@@ -25,6 +26,7 @@ public class EditActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit);
 
+        // link the EditText and Button with the views in layout
         final EditText yearText = (EditText) findViewById(R.id.year2);
         final EditText monthText = (EditText) findViewById(R.id.month2);
         final EditText dayText = (EditText) findViewById(R.id.day2);
@@ -36,7 +38,8 @@ public class EditActivity extends Activity {
         Button save = (Button) findViewById(R.id.save2);
         Button cancel = (Button) findViewById(R.id.cancel2);
 
-
+        //get the original attributes value of selected entry
+        //and put them in the EditText view
         yearText.setText(MainActivity.entrys.get(MainActivity.ID).getDate().getYear());
         monthText.setText(MainActivity.entrys.get(MainActivity.ID).getDate().getMonth());
         dayText.setText(MainActivity.entrys.get(MainActivity.ID).getDate().getDay());
@@ -46,10 +49,12 @@ public class EditActivity extends Activity {
         fAText.setText(MainActivity.entrys.get(MainActivity.ID).getFuelAmount());
         fUCText.setText(MainActivity.entrys.get(MainActivity.ID).getUnitCost());
 
+        //if user click save button
         save.setOnClickListener(
                 new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
+                        //get new log info
                         String year = yearText.getText().toString();
                         String month = monthText.getText().toString();
                         String day = dayText.getText().toString();
@@ -61,6 +66,7 @@ public class EditActivity extends Activity {
                         MyDate date = new MyDate(year, month, day);
                         LogEntry newEntry = new LogEntry();
 
+                        //put the new info into a new entry
                         newEntry.setDate(date);
                         newEntry.setStation(station);
                         newEntry.setOdometer(odometer);
@@ -68,21 +74,27 @@ public class EditActivity extends Activity {
                         newEntry.setFuelGrade(fG);
                         newEntry.setUnitCost(fUC);
 
-
+                        // if the newEntry is valid
                         if(newEntry.getValid()) {
+                            // calculate the cost
                             newEntry.calFuelCost();
+                            // put it in the original position
                             MainActivity.entrys.set(MainActivity.ID, newEntry);
+                            //save the data file
                             saveInFile();
+                            //go back to MainActivity
                             finish();
                         }
                     }
                 }
         );
 
+        //if the user click on cancel button
         cancel.setOnClickListener(
                 new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
+                        // go back to MainActivity
                         finish();
                     }
                 }
@@ -91,9 +103,13 @@ public class EditActivity extends Activity {
 
     private void saveInFile(){
         try{
+            // open the data file
             FileOutputStream fos = openFileOutput(MainActivity.FILENAME, Context.MODE_PRIVATE);
+            // setup a writer
             BufferedWriter out = new BufferedWriter(new OutputStreamWriter(fos));
+            // set up gson
             Gson gson = new Gson();
+            // write data in the file
             gson.toJson(MainActivity.entrys,out);
             out.flush();
 

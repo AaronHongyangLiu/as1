@@ -3,6 +3,8 @@ package com.example.aaron.hliu11_fueltrack;
 /**
  * Created by Aaron on 1/26/2016.
  */
+
+// this class stores all the information of one log entry
 public class LogEntry {
     private MyDate date;
     private String station;
@@ -11,8 +13,10 @@ public class LogEntry {
     private String fuelAmount;
     private String unitCost;
     private String fuelCost;
+    // to make sure the fuelAmount, unitCost, odometer is numerical
     private boolean valid;
 
+    //constructor
     public LogEntry(){
         date = new MyDate();
         station = "Unknown Station";
@@ -57,6 +61,7 @@ public class LogEntry {
     public void setOdometer(String odometer) {this.odometer = odometer;}
     public void setStation(String station) {this.station = station;}
 
+    // calculate the cost of fuel in this entry
     public void calFuelCost(){
         float a = Float.parseFloat(fuelAmount);
         float b = Float.parseFloat(unitCost);
@@ -64,6 +69,7 @@ public class LogEntry {
         fuelCost = String.format("%.2f", cost);
     }
 
+    // to convert it to format like: 2016-01-18, Costco, 200123.5 km, regular, 40.000 L, 10.0 cents/L, 400.00 dollars
     @Override
     public String toString(){
         return date+", "+station+", "+odometer+" km, "+fuelGrade+", "+fuelAmount+" L, "+unitCost+" cents/L, "+fuelCost+" dollars";

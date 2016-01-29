@@ -26,54 +26,76 @@ import java.io.OutputStreamWriter;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
 
+// this is the main activity class
 public class MainActivity extends Activity {
 
+    // data file name
     protected static final String FILENAME = "file.sav";
+    // ID of the selected entry
     protected static int ID;
+
     private ListView logList;
     private TextView sumText;
-
-    protected static ArrayList<LogEntry> entrys = new ArrayList<LogEntry>();
-    private SumMessage sum;
     private ArrayAdapter<LogEntry> adapter1;
+
+    // list to store log datas
+    protected static ArrayList<LogEntry> entrys = new ArrayList<LogEntry>();
+    // the total fuel cost summation message
+    private SumMessage sum;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        // line button and views in layout
         Button mainAddButton = (Button)findViewById(R.id.mainAddButton);
+        // it's final is because this button will be used inside itemClickLister
         final Button editButton = (Button)findViewById(R.id.mainEditButton);
         sumText =(TextView)findViewById(R.id.sum);
         logList = (ListView) findViewById(R.id.logEntries);
         logList.setAdapter(adapter1);
 
+        // if user click on add
         mainAddButton.setOnClickListener(
                 new Button.OnClickListener() {
                     public void onClick(View v) {
+                        //set up an intent to AddActivity
                         Intent intent = new Intent("com.example.aaron.hliu11_fueltrack.AddActivity");
                         startActivity(intent);
 
+                        // notify possible data changes after get back from AddActivity
                         adapter1.notifyDataSetChanged();
+                        // recalculate the total fuel cost
                         sum = new SumMessage(entrys);
                         sumText.setText(sum.toSting());
                     }
                 }
         );
 
+        // if user click on one log entry
         logList.setOnItemClickListener(
                 new AdapterView.OnItemClickListener() {
                     @Override
                     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                        // set selected to be true to change background color of that entry
                         view.setSelected(true);
+                        // set up an intent to EditActivity
                         final Intent i = new Intent("com.example.aaron.hliu11_fueltrack.EditActivity");
-                        ID = (int)id;
+                        // store the id of the selected entry
+                        ID = (int) id;
+                        // if user click on edit button
                         editButton.setOnClickListener(
                                 new View.OnClickListener() {
                                     @Override
                                     public void onClick(View v) {
+                                        // go to EditActivity
                                         startActivity(i);
 
+                                        // notify possible data changes after get back from EditActivity
                                         adapter1.notifyDataSetChanged();
+                                        // recalculate the total fuel cost
                                         sum = new SumMessage(entrys);
                                         sumText.setText(sum.toSting());
                                     }
@@ -88,9 +110,12 @@ public class MainActivity extends Activity {
     @Override
     protected void onStart() {
         super.onStart();
+        // load data file
         loadFromFile();
+        // setup adpter
         adapter1 = new ArrayAdapter<LogEntry>(this, R.layout.list_item, entrys);
         logList.setAdapter(adapter1);
+        // calculate the total fuel cost
         sum = new SumMessage(entrys);
         sumText.setText(sum.toSting());
 
@@ -98,34 +123,26 @@ public class MainActivity extends Activity {
 
     private void loadFromFile(){
         try{
+            // open the input data file
             FileInputStream fis = openFileInput(FILENAME);
+            //setup a reader
             BufferedReader in = new BufferedReader(new InputStreamReader(fis));
+            //setup gson
             Gson gson = new Gson();
 
+            // setup my type
             Type listType = new TypeToken<ArrayList<LogEntry>>(){}.getType();
+            // load data to the list of log entries
             entrys = gson.fromJson(in,listType);
 
         } catch (FileNotFoundException e) {
             // TODO Auto-generated catch block
+            // if there is no data file, then create an empty list
             entrys = new ArrayList<LogEntry>();
 
         }
     }
 
-    private void saveInFile(){
-        try{
-            FileOutputStream fos = openFileOutput(FILENAME, Context.MODE_PRIVATE);
-            BufferedWriter out = new BufferedWriter(new OutputStreamWriter(fos));
-            Gson gson = new Gson();
-            gson.toJson(entrys,out);
-            out.flush();
 
-            fos.close();
-        }catch(FileNotFoundException e){
-            throw new RuntimeException();
-        }catch (IOException e){
-            e.printStackTrace();
-        }
-    }
 }
 

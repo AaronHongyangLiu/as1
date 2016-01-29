@@ -3,6 +3,8 @@ package com.example.aaron.hliu11_fueltrack;
 /**
  * Created by Aaron on 1/26/2016.
  */
+
+// this class stores the date and can convert it to a certain format
 public class MyDate {
     private String year;
     private String month;

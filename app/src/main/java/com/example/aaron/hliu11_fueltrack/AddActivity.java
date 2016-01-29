@@ -22,6 +22,7 @@ public class AddActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add);
 
+        // link the EditText and Button with the views in layout
         final EditText yearText = (EditText) findViewById(R.id.year);
         final EditText monthText = (EditText) findViewById(R.id.month);
         final EditText dayText = (EditText) findViewById(R.id.day);
@@ -33,10 +34,12 @@ public class AddActivity extends Activity {
         Button save = (Button) findViewById(R.id.save);
         Button cancel = (Button) findViewById(R.id.cancel);
 
+        //if user click save button
         save.setOnClickListener(
                 new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
+                        //get new log info
                         String year = yearText.getText().toString();
                         String month = monthText.getText().toString();
                         String day = dayText.getText().toString();
@@ -48,6 +51,7 @@ public class AddActivity extends Activity {
                         MyDate date = new MyDate(year, month, day);
                         LogEntry newEntry = new LogEntry();
 
+                        //put the new info into a new entry
                         newEntry.setDate(date);
                         newEntry.setStation(station);
                         newEntry.setOdometer(odometer);
@@ -55,21 +59,26 @@ public class AddActivity extends Activity {
                         newEntry.setFuelGrade(fG);
                         newEntry.setUnitCost(fUC);
 
-
+                        // if the newEntry is valid
                         if (newEntry.getValid()) {
+                            // calculate the cost
                             newEntry.calFuelCost();
+                            // append it to the log entry list
                             MainActivity.entrys.add(newEntry);
+                            // save data in file
                             saveInFile();
+                            // go back to MainActivity
                             finish();
                         }
                     }
                 }
         );
-
+        //if the user click on cancel button
         cancel.setOnClickListener(
                 new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
+                        // go back to MainActivity
                         finish();
                     }
                 }
@@ -78,9 +87,13 @@ public class AddActivity extends Activity {
 
     private void saveInFile(){
         try{
+            // open the data file
             FileOutputStream fos = openFileOutput(MainActivity.FILENAME, Context.MODE_PRIVATE);
+            // setup a writer
             BufferedWriter out = new BufferedWriter(new OutputStreamWriter(fos));
+            // set up gson
             Gson gson = new Gson();
+            // write data in the file
             gson.toJson(MainActivity.entrys,out);
             out.flush();
 
