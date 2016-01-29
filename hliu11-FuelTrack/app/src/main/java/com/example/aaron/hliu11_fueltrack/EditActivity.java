@@ -67,9 +67,10 @@ public class EditActivity extends Activity {
                         newEntry.setFuelAmount(fA);
                         newEntry.setFuelGrade(fG);
                         newEntry.setUnitCost(fUC);
-                        newEntry.calFuelCost();
+
 
                         if(newEntry.getValid()) {
+                            newEntry.calFuelCost();
                             MainActivity.entrys.set(MainActivity.ID, newEntry);
                             saveInFile();
                             finish();

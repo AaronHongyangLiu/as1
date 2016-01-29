@@ -54,9 +54,10 @@ public class AddActivity extends Activity {
                         newEntry.setFuelAmount(fA);
                         newEntry.setFuelGrade(fG);
                         newEntry.setUnitCost(fUC);
-                        newEntry.calFuelCost();
+
 
                         if (newEntry.getValid()) {
+                            newEntry.calFuelCost();
                             MainActivity.entrys.add(newEntry);
                             saveInFile();
                             finish();

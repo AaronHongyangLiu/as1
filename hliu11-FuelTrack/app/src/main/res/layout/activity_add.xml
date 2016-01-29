@@ -143,9 +143,9 @@
         android:layout_height="wrap_content"
         android:text="cancel"
         android:id="@+id/cancel"
-        android:layout_alignBottom="@+id/save"
-        android:layout_alignRight="@+id/day"
-        android:layout_alignEnd="@+id/day" />
+        android:layout_alignTop="@+id/save"
+        android:layout_alignLeft="@+id/textView13"
+        android:layout_alignStart="@+id/textView13" />
 
     <EditText
         android:layout_width="180dp"

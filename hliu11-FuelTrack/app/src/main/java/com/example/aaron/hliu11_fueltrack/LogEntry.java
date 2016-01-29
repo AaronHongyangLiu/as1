@@ -32,6 +32,8 @@ public class LogEntry {
     public String getFuelAmount() {return fuelAmount;}
     public String getFuelGrade() {return fuelGrade;}
     public String getOdometer() {return odometer;}
+
+    // check if FuelAmount, Odometer and UnitCost are numerical
     public boolean getValid() {
         try{
             float od = Float.parseFloat(odometer);
